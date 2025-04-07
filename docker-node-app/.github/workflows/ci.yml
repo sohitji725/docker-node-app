@@ -1,4 +1,4 @@
-name: CI Demo
+name: Node.js CI
 
 on:
   push:
@@ -9,8 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Print Hello
-        run: echo "🎉 Hello from GitHub Actions!"
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: npm test
